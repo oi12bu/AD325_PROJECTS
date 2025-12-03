@@ -12,6 +12,11 @@ class PatientRecord:
         self.pulse = pulse
         self.body_temperature = body_temperature
 
+    def __str__(self):
+        return (f"Patient ID: {self.patient_id}, Name: {self.name}, Age: {self.age}, "
+                f"Diagnosis: {self.diagnosis}, Blood Pressure: {self.blood_pressure}, "
+                f"Pulse: {self.pulse}, Body Temperature: {self.body_temperature}")
+
 
 class PatientRecordManagementSystem:
     def __init__(self):
@@ -30,9 +35,7 @@ class PatientRecordManagementSystem:
             return None
     
     def delete_patient_record(self, patient_id):
-        node = self.bst.search(patient_id)
-        if node:
-            node.remove()
+        self.bst.remove(patient_id)
     
     def display_all_records(self):
         all_elements = self.bst.inorder_traversal(self.bst.root)
@@ -48,7 +51,7 @@ class PatientRecordManagementSystem:
                 csv_reader = csv.reader(csvfile)
                 next(csv_reader)  # Skip header row
                 for row in csv_reader:
-                    patient_id = row[0]
+                    patient_id = int(row[0])
                     name = row[1]
                     age = int(row[2])
                     diagnosis = row[3]
