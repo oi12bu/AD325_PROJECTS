@@ -113,23 +113,31 @@ class BinarySearchTree:
                 
         return # Node not found
     
+    # Using LCR (in-order) traversal to get all nodes in order
     def inorder_traversal(self, node):
+        # Collecting elements in a list
         elements = []
+        # Traversing the left subtree, then the node, then the right subtree
         if node:
             elements += self.inorder_traversal(node.left)
             elements.append(node)
             elements += self.inorder_traversal(node.right)
         return elements
     
+    # Using CLR (pre-order) traversal to get all nodes
     def preorder_traversal(self, node):
+        # Collecting elements in a list
         elements = []
+        # Traversing the node, then the left subtree, then the right subtree
         if node:
             elements.append(node)
             elements += self.preorder_traversal(node.left)
             elements += self.preorder_traversal(node.right)
         return elements
     
+    # Using LRC (post-order) traversal to get all nodes
     def postorder_traversal(self, node):
+        # Collecting elements in a list
         elements = []
         if node:
             elements += self.postorder_traversal(node.left)
